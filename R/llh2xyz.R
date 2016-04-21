@@ -1,8 +1,6 @@
 #' Title
 #'
-#' @param flati
-#' @param floni
-#' @param altkmi
+#' @param vec
 #'
 #' @details
 #' This converter uses N latitude and E longitude. Heights are in meters, and are ellipsoidal heights. There is no geoid model included.
