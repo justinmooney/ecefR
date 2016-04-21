@@ -17,6 +17,7 @@ geodGBL <- function() {
 #'
 #' @export
 #'
+#'
 earthcon <- function(ai, bi) {
 
     a <- as.numeric(ai)
