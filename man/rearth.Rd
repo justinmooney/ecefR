@@ -2,14 +2,17 @@
 % Please edit documentation in R/coords.R
 \name{rearth}
 \alias{rearth}
-\title{Title}
+\title{physical radius of earth from geodetic latitude}
 \usage{
 rearth(lati)
 }
 \arguments{
 \item{lati}{}
 }
+\value{
+radius of earth at lat
+}
 \description{
-Title
+physical radius of earth from geodetic latitude
 }
 

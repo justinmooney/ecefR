@@ -2,14 +2,16 @@
 % Please edit documentation in R/coords.R
 \name{earthcon}
 \alias{earthcon}
-\title{Title}
+\title{Sets Earth Constants as global variables.}
 \usage{
 earthcon(ai, bi)
 }
 \arguments{
-\item{bi}{}
+\item{ai}{no idea}
+
+\item{bi}{no idea}
 }
 \description{
-Title
+Sets Earth Constants as global variables.
 }
 

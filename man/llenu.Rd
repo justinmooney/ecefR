@@ -2,14 +2,19 @@
 % Please edit documentation in R/coords.R
 \name{llenu}
 \alias{llenu}
-\title{Title}
+\title{latitude longitude to east,north,up unit vectors}
 \usage{
 llenu(flati, floni)
 }
 \arguments{
-\item{floni}{}
+\item{flati}{latitude in degees N}
+
+\item{floni}{longitude in degrees E}
+}
+\value{
+enu[3[3]]  packed 3-unit vectors / each a 3 vector
 }
 \description{
-Title
+latitude longitude to east,north,up unit vectors
 }
 

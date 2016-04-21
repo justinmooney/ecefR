@@ -2,11 +2,11 @@
 % Please edit documentation in R/coords.R
 \name{geodGBL}
 \alias{geodGBL}
-\title{Title}
+\title{A workaround using global namespaces}
 \usage{
 geodGBL()
 }
 \description{
-Title
+A workaround using global namespaces
 }
 

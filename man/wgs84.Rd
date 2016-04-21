@@ -2,11 +2,11 @@
 % Please edit documentation in R/coords.R
 \name{wgs84}
 \alias{wgs84}
-\title{Title}
+\title{WGS84 Earth Constants}
 \usage{
 wgs84()
 }
 \description{
-Title
+WGS84 Earth Constants
 }
 

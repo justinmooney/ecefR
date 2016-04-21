@@ -2,14 +2,17 @@
 % Please edit documentation in R/coords.R
 \name{radcur}
 \alias{radcur}
-\title{Title}
+\title{compute the radii at the geodetic latitude lat (in degrees)}
 \usage{
 radcur(lati)
 }
 \arguments{
-\item{lati}{}
+\item{lati}{geodetic latitude in degrees}
+}
+\value{
+r, rn, rm in km
 }
 \description{
-Title
+compute the radii at the geodetic latitude lat (in degrees)
 }
 

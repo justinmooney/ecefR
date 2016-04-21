@@ -2,14 +2,19 @@
 % Please edit documentation in R/coords.R
 \name{gc2gd}
 \alias{gc2gd}
-\title{Title}
+\title{geocentric latitude to geodetic latitude}
 \usage{
 gc2gd(flatgci, altkmi)
 }
 \arguments{
-\item{altkmi}{}
+\item{flatgci}{geocentric latitude deg}
+
+\item{altkmi}{altitide in km}
+}
+\value{
+geodetic latitude in deg
 }
 \description{
-Title
+geocentric latitude to geodetic latitude
 }
 
