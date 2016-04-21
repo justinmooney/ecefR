@@ -1,6 +1,6 @@
 #' Convert LLA to ECEF
 #'
-#' @param vec lat)deg), long(deg), and altitude(km)
+#' @param vec lat(deg), long(deg), and altitude(km)
 #'
 #' @return A 3-vec containing xyz for ECEF (km)
 #'
@@ -18,7 +18,7 @@ lla2xyz <- function(vec) {
 
     dtr <- pi / 180.0
 
-    geodGBL()
+    EARTH <- wgs84()
 
     clat <- cos(dtr * flat)
     slat <- sin(dtr * flat)
@@ -28,7 +28,7 @@ lla2xyz <- function(vec) {
     rrnrm <- radcur(flat)
     rn    <- rrnrm[2]
 
-    ecc <- EARTH_Ecc
+    ecc <- EARTH$Ecc
     esq <- ecc ** 2
 
     x <- (rn + altkm) * clat * clon

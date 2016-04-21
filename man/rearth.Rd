@@ -4,10 +4,10 @@
 \alias{rearth}
 \title{physical radius of earth from geodetic latitude}
 \usage{
-rearth(lati)
+rearth(lat)
 }
 \arguments{
-\item{lati}{}
+\item{lat}{latitude at whic to calculate radius}
 }
 \value{
 radius of earth at lat

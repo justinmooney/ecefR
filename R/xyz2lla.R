@@ -1,6 +1,6 @@
 #' ECEF Coordinates to Lat, Long, Altitude
 #'
-#' @param xvec xyz ECEF location
+#' @param vec xyz ECEF location
 #'
 #' @return A 3-vec containing lat(deg), long(deg), altitude(km)
 #'
@@ -9,9 +9,9 @@
 xyz2lla <- function(vec) {
     dtr <-  pi / 180.0
 
-    geodGBL() # makes sure the globals exist or something
+    EARTH <- wgs84()
 
-    esq <- EARTH_Esq
+    esq <- EARTH$Esq
 
     x <- as.numeric(vec[1])
     y <- as.numeric(vec[2])

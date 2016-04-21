@@ -7,7 +7,7 @@
 lla2xyz(vec)
 }
 \arguments{
-\item{vec}{lat)deg), long(deg), and altitude(km)}
+\item{vec}{lat(deg), long(deg), and altitude(km)}
 }
 \value{
 A 3-vec containing xyz for ECEF (km)

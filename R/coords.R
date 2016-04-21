@@ -1,15 +1,3 @@
-#' A workaround using global namespaces
-#'
-#' @export
-#'
-geodGBL <- function() {
-    # this should probably not be a thing
-    if (!exists("EARTH_A"))
-        wgs84()
-
-}
-
-
 #' Sets Earth Constants as global variables.
 #'
 #' @param ai no idea
@@ -27,11 +15,7 @@ earthcon <- function(ai, bi) {
     eccsq <- 1 - b * b / (a * a)
     ecc <- sqrt(eccsq)
 
-    EARTH_A  <<-  a
-    EARTH_B  <<-  b
-    EARTH_F  <<- f
-    EARTH_Ecc <<-  ecc
-    EARTH_Esq <<- eccsq
+    list(A = a, B = b, F = f, Ecc = ecc, Esq = eccsq)
 }
 
 
@@ -50,47 +34,45 @@ wgs84 <- function() {
 
 #' compute the radii at the geodetic latitude lat (in degrees)
 #'
-#' @param lati geodetic latitude in degrees
+#' @param lat geodetic latitude in degrees
 #'
 #' @return r, rn, rm in km
 #'
 #' @export
 
-radcur <- function(lati) {
+radcur <- function(lat) {
 
-    rrnrm = vector(length = 3)
+    rrnrm <- vector(length = 3)
 
-    dtr   = pi / 180.0
+    dtr <- pi / 180.0
 
-    geodGBL()
+    EARTH <- wgs84()
 
-    a     = EARTH_A
-    b     = EARTH_B
+    a <- EARTH$A
+    b <- EARTH$B
 
-    asq   = a * a
-    bsq   = b * b
-    eccsq  =  1 - bsq / asq
-    ecc = sqrt(eccsq)
+    asq   <- a ** 2
+    bsq   <- b ** 2
+    eccsq <- 1 - bsq / asq
+    #ecc   <- sqrt(eccsq)
 
-    lat   =  as.numeric(lati)
+    clat <- cos(dtr * lat)
+    slat <- sin(dtr * lat)
 
-    clat  =  cos(dtr * lat)
-    slat  =  sin(dtr * lat)
+    dsq <- 1.0 - eccsq * slat * slat
+    d   <- sqrt(dsq)
 
-    dsq   =  1.0 - eccsq * slat * slat
-    d     =  sqrt(dsq)
+    rn <- a / d
+    rm <- rn * (1.0 - eccsq) / dsq
 
-    rn    =  a / d
-    rm    =  rn * (1.0 - eccsq) / dsq
+    rho <- rn * clat
+    z   <- (1.0 - eccsq) * rn * slat
+    rsq <- rho * rho + z * z
+    r   <- sqrt(rsq)
 
-    rho   =  rn * clat
-    z     =  (1.0 - eccsq) * rn * slat
-    rsq   =  rho * rho + z * z
-    r     =  sqrt(rsq)
-
-    rrnrm[1]  =  r
-    rrnrm[2]  =  rn
-    rrnrm[3]  =  rm
+    rrnrm[1] <- r
+    rrnrm[2] <- rn
+    rrnrm[3] <- rm
 
     rrnrm
 }
@@ -98,20 +80,14 @@ radcur <- function(lati) {
 
 #' physical radius of earth from geodetic latitude
 #'
-#' @param lati
+#' @param lat latitude at whic to calculate radius
 #'
 #' @return radius of earth at lat
 #'
 #' @export
 #'
-rearth <- function(lati) {
-
-    lat <- as.numeric(lati)
-
-    rrnrm <- radcur(lat)
-    r     <-  rrnrm[1]
-
-    r
+rearth <- function(lat) {
+    radcur(lat)[1]
 }
 
 
@@ -131,12 +107,12 @@ gc2gd <- function(flatgci, altkmi) {
 
     rrnrm <- vector(length = 3)
 
-    geodGBL()
+    EARTH <- wgs84()
 
     flatgc <- as.numeric(flatgci)
     altkm  <- as.numeric(altkmi)
 
-    ecc <- EARTH_Ecc
+    ecc <- EARTH$Ecc
     esq <- ecc * ecc
 
     # approximation by stages
@@ -182,12 +158,12 @@ gd2gc <- function(flatgdi, altkmi) {
 
     rrnrm <- vector(3)
 
-    geodGBL()
+    EARTH <- wgs84()
 
     flatgd <- as.numeric(flatgdi)
     altkm  <- as.numeric(altkmi)
 
-    ecc <- EARTH_Ecc
+    ecc <- EARTH$Ecc
     esq <- ecc * ecc
 
     altnow <- altkm

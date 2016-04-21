@@ -4,10 +4,10 @@
 \alias{radcur}
 \title{compute the radii at the geodetic latitude lat (in degrees)}
 \usage{
-radcur(lati)
+radcur(lat)
 }
 \arguments{
-\item{lati}{geodetic latitude in degrees}
+\item{lat}{geodetic latitude in degrees}
 }
 \value{
 r, rn, rm in km

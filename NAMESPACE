@@ -3,7 +3,6 @@
 export(earthcon)
 export(gc2gd)
 export(gd2gc)
-export(geodGBL)
 export(lla2xyz)
 export(llenu)
 export(radcur)
