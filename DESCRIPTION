@@ -2,12 +2,13 @@ Package: ecefR
 Type: Package
 Title: Convert ECEF to LLA or vice versa
 Version: 0.1.0
-Author: James R. Clynch NPS
+Author: James R. Clynch
 Maintainer: Justin Mooney <jmooney@anyarinc.com>
 Description:
     This package converts earth-centered-earth-fixed (ECEF) coordinates to
     lat/long/altitude (LLA) using WGS84 Earth model. The implementation was
-    taken from http://www.oc.nps.edu/oc2902w/coord/llhxyz.htm
+    taken from the javascript at http://www.oc.nps.edu/oc2902w/coord/llhxyz.htm.
+    Attributed to James R. Clynch 2003.
 License: GPL-3
 LazyData: TRUE
 RoxygenNote: 5.0.1
