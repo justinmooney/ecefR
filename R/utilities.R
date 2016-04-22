@@ -38,8 +38,6 @@ wgs84 <- function() {
 #'
 radcur <- function(lat) {
 
-    rrnrm <- vector(length = 3)
-
     dtr <- pi / 180.0
 
     EARTH <- wgs84()
@@ -65,11 +63,7 @@ radcur <- function(lat) {
     rsq <- rho * rho + z * z
     r   <- sqrt(rsq)
 
-    rrnrm[1] <- r
-    rrnrm[2] <- rn
-    rrnrm[3] <- rm
-
-    rrnrm
+    c(r, rn, rm)
 }
 
 
@@ -88,24 +82,19 @@ rearth <- function(lat) {
 
 #' geocentric latitude to geodetic latitude
 #'
-#' @param flatgci geocentric latitude deg
-#' @param altkmi altitide in km
+#' @param flatgc geocentric latitude deg
+#' @param altkm altitide in km
 #'
 #' @return geodetic latitude in deg
 #'
 #' @export
 #'
-gc2gd <- function(flatgci, altkmi) {
+gc2gd <- function(flatgc, altkm) {
 
     dtr <- pi / 180.0
     rtd <- 1 / dtr
 
-    rrnrm <- vector(length = 3)
-
     EARTH <- wgs84()
-
-    flatgc <- as.numeric(flatgci)
-    altkm  <- as.numeric(altkmi)
 
     ecc <- EARTH$Ecc
     esq <- ecc * ecc
@@ -139,27 +128,22 @@ gc2gd <- function(flatgci, altkmi) {
 
 #' geodetic latitude to geocentric latitude
 #'
-#' @param flatgdi geodetic latitude deg
-#' @param altkmi altitide in km
+#' @param flatgd geodetic latitude deg
+#' @param altkm altitide in km
 #'
 #' @return geocentric latitude in deg
 #'
 #' @export
 #'
-gd2gc <- function(flatgdi, altkmi) {
+gd2gc <- function(flatgd, altkm) {
 
     dtr <- pi / 180.0
     rtd <- 1 / dtr
 
-    rrnrm <- vector(3)
-
     EARTH <- wgs84()
 
-    flatgd <- as.numeric(flatgdi)
-    altkm  <- as.numeric(altkmi)
-
     ecc <- EARTH$Ecc
-    esq <- ecc * ecc
+    esq <- ecc ** 2
 
     altnow <- altkm
 
@@ -178,48 +162,27 @@ gd2gc <- function(flatgdi, altkmi) {
 
 #' latitude longitude to east,north,up unit vectors
 #'
-#' @param flati latitude in degees N
-#' @param floni longitude in degrees E
+#' @param flat latitude in degees N
+#' @param flon longitude in degrees E
 #'
 #' @return enu[3[3]]  packed 3-unit vectors / each a 3 vector
 #'
 #' @export
 
-llenu <- function(flati, floni) {
-
-    ee <- vector(length = 3)
-    en <- vector(length = 3)
-    eu <- vector(length = 3)
-
-    enu <- vector(length = 3)
+llenu <- function(flat, flon) {
 
     dtr <- pi / 180.0
-
-    flat <- as.numeric(flati)
-    flon <- as.numeric(floni)
 
     clat <- cos(dtr * flat)
     slat <- sin(dtr * flat)
     clon <- cos(dtr * flon)
     slon <- sin(dtr * flon)
 
-    ee[1] <- -slon
-    ee[2] <- clon
-    ee[3] <- 0.0
+    ee <- c(-slon, clon, 0.0)
+    en <- c(-clon*slat, -slon * slat, clat)
+    eu <- c(clon * clat, slon * clat, slat)
 
-    en[1] <- -clon * slat
-    en[2] <- -slon * slat
-    en[3] <- clat
-
-    eu[1] <- clon * clat
-    eu[2] <- slon * clat
-    eu[3] <- slat
-
-    enu[1] <- ee
-    enu[2] <- en
-    enu[3] <- eu
-
-    enu
+    c(ee, en, eu)
 }
 
 
