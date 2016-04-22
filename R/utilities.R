@@ -3,8 +3,6 @@
 #' @param a no idea
 #' @param b no idea
 #'
-#' @export
-#'
 earthcon <- function(a, b) {
 
     f     <- 1 - b / a
@@ -16,9 +14,6 @@ earthcon <- function(a, b) {
 
 
 #' WGS84 Earth Constants
-#'
-#' @export
-#'
 wgs84 <- function() {
     wgs84a <- 6378.137
     wgs84f <- 1.0 / 298.257223563
@@ -33,8 +28,6 @@ wgs84 <- function() {
 #' @param lat geodetic latitude in degrees
 #'
 #' @return r, rn, rm in km
-#'
-#' @export
 #'
 radcur <- function(lat) {
 
@@ -73,8 +66,6 @@ radcur <- function(lat) {
 #'
 #' @return radius of earth at lat
 #'
-#' @export
-#'
 rearth <- function(lat) {
     radcur(lat)[1]
 }
@@ -86,8 +77,6 @@ rearth <- function(lat) {
 #' @param altkm altitide in km
 #'
 #' @return geodetic latitude in deg
-#'
-#' @export
 #'
 gc2gd <- function(flatgc, altkm) {
 
@@ -133,8 +122,6 @@ gc2gd <- function(flatgc, altkm) {
 #'
 #' @return geocentric latitude in deg
 #'
-#' @export
-#'
 gd2gc <- function(flatgd, altkm) {
 
     dtr <- pi / 180.0
@@ -167,8 +154,6 @@ gd2gc <- function(flatgd, altkm) {
 #'
 #' @return enu[3[3]]  packed 3-unit vectors / each a 3 vector
 #'
-#' @export
-
 llenu <- function(flat, flon) {
 
     dtr <- pi / 180.0
