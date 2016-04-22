@@ -4,12 +4,12 @@
 \alias{llenu}
 \title{latitude longitude to east,north,up unit vectors}
 \usage{
-llenu(flati, floni)
+llenu(flat, flon)
 }
 \arguments{
-\item{flati}{latitude in degees N}
+\item{flat}{latitude in degees N}
 
-\item{floni}{longitude in degrees E}
+\item{flon}{longitude in degrees E}
 }
 \value{
 enu[3[3]]  packed 3-unit vectors / each a 3 vector

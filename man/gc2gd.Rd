@@ -4,12 +4,12 @@
 \alias{gc2gd}
 \title{geocentric latitude to geodetic latitude}
 \usage{
-gc2gd(flatgci, altkmi)
+gc2gd(flatgc, altkm)
 }
 \arguments{
-\item{flatgci}{geocentric latitude deg}
+\item{flatgc}{geocentric latitude deg}
 
-\item{altkmi}{altitide in km}
+\item{altkm}{altitide in km}
 }
 \value{
 geodetic latitude in deg
