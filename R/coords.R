@@ -1,19 +1,15 @@
 #' Sets Earth Constants as global variables.
 #'
-#' @param ai no idea
-#' @param bi no idea
+#' @param a no idea
+#' @param b no idea
 #'
 #' @export
 #'
-#'
-earthcon <- function(ai, bi) {
+earthcon <- function(a, b) {
 
-    a <- as.numeric(ai)
-    b <- as.numeric(bi)
-
-    f <- 1 - b / a
-    eccsq <- 1 - b * b / (a * a)
-    ecc <- sqrt(eccsq)
+    f     <- 1 - b / a
+    eccsq <- 1 - b ** 2 / a ** 2
+    ecc   <- sqrt(eccsq)
 
     list(A = a, B = b, F = f, Ecc = ecc, Esq = eccsq)
 }
@@ -39,7 +35,7 @@ wgs84 <- function() {
 #' @return r, rn, rm in km
 #'
 #' @export
-
+#'
 radcur <- function(lat) {
 
     rrnrm <- vector(length = 3)
@@ -54,7 +50,6 @@ radcur <- function(lat) {
     asq   <- a ** 2
     bsq   <- b ** 2
     eccsq <- 1 - bsq / asq
-    #ecc   <- sqrt(eccsq)
 
     clat <- cos(dtr * lat)
     slat <- sin(dtr * lat)
