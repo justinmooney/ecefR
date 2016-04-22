@@ -4,6 +4,10 @@
 #'
 #' @return A 3-vec containing lat(deg), long(deg), altitude(km)
 #'
+#' @details
+#' This converter uses N latitude and E longitude. Heights are in meters, and are ellipsoidal heights. There is no geoid model included.
+#' The WGS 84 ellipsoid is used.
+#'
 #' @export
 #'
 xyz2lla <- function(vec) {
@@ -13,27 +17,24 @@ xyz2lla <- function(vec) {
 
     esq <- EARTH$Esq
 
-    x <- as.numeric(vec[1])
-    y <- as.numeric(vec[2])
-    z <- as.numeric(vec[3])
+    x <- vec[1]
+    y <- vec[2]
+    z <- vec[3]
 
-    rp <- sqrt(x ** 2 + y ** 2 + z ** 2)
+    rp <- sqrt(x^2 + y^2 + z^2)
 
     flatgc <- asin(z / rp) / dtr
 
     testval <- abs(x) + abs(y)
-
-    if (testval < 1.0e-10) {
+    if (testval < 1.0e-10)
         flon <- 0.0
-    } else {
+    else
         flon <- atan2(y, x) / dtr
-    }
 
-    if (flon < 0.0) {
+    if (flon < 0.0)
         flon <- flon + 360.0
-    }
 
-    p <- sqrt(x ** 2 + y ** 2)
+    p <- sqrt(x^2 + y^2)
 
     # on pole special case
     if (p < 1.0e-10) {
@@ -44,7 +45,7 @@ xyz2lla <- function(vec) {
 
         altkm <- rp - rearth(flat)
 
-        llavec <- c(flat, flon, altkm)
+        return(c(flat, flon, altkm))  # i dont even know how to test this
     }
 
     # first iteration, use flatgc to get altitude
@@ -57,7 +58,8 @@ xyz2lla <- function(vec) {
     rrnrm <- radcur(flat)
     rn    <- rrnrm[2]
 
-    for (i in 1:5) {  # why only five times?
+    #for (i in 1:5) {  # why only five times?
+    while(TRUE) {
         slat  <- sin(dtr * flat)
         tangd <- (z + rn * esq * slat) / p
         flatn <- atan(tangd) / dtr
@@ -75,7 +77,5 @@ xyz2lla <- function(vec) {
             break
     }
 
-    llavec <- c(flat, flon, altkm)
-    llavec
-
+    return(c(flat, flon, altkm))
 }

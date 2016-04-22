@@ -15,4 +15,8 @@ A 3-vec containing lat(deg), long(deg), altitude(km)
 \description{
 ECEF Coordinates to Lat, Long, Altitude
 }
+\details{
+This converter uses N latitude and E longitude. Heights are in meters, and are ellipsoidal heights. There is no geoid model included.
+The WGS 84 ellipsoid is used.
+}
 

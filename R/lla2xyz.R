@@ -12,9 +12,9 @@
 #'
 lla2xyz <- function(vec) {
 
-    flat  <- as.numeric(vec[1])
-    flon  <- as.numeric(vec[2])
-    altkm <- as.numeric(vec[3])
+    flat  <- vec[1]
+    flon  <- vec[2]
+    altkm <- vec[3]
 
     dtr <- pi / 180.0
 
@@ -35,8 +35,6 @@ lla2xyz <- function(vec) {
     y <- (rn + altkm) * clat * slon
     z <- ((1 - esq) * rn + altkm) * slat
 
-    xvec <- c(x,y,z)
-
-    xvec
+    c(x,y,z)
 }
 
