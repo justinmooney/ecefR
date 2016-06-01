@@ -18,7 +18,6 @@ xyz2lla <- function(x, y, z) {
     dtr <-  pi / 180.0
 
     EARTH <- wgs84()
-
     esq <- EARTH$Esq
 
     rp <- sqrt(x ^ 2 + y ^ 2 + z ^ 2)
