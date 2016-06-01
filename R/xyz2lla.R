@@ -1,27 +1,27 @@
 #' ECEF Coordinates to Lat, Long, Altitude
 #'
-#' @param vec xyz ECEF location
+#' @param x x-coord
+#' @param y y-coord
+#' @param z z-coord
 #'
 #' @return A 3-vec containing lat(deg), long(deg), altitude(km)
 #'
 #' @details
-#' This converter uses N latitude and E longitude. Heights are in meters, and are ellipsoidal heights. There is no geoid model included.
+#' This converter uses N latitude and E longitude.
+#' Heights are in meters, and are ellipsoidal heights.
+#' There is no geoid model included.
 #' The WGS 84 ellipsoid is used.
 #'
 #' @export
 #'
-xyz2lla <- function(vec) {
+xyz2lla <- function(x, y, z) {
     dtr <-  pi / 180.0
 
     EARTH <- wgs84()
 
     esq <- EARTH$Esq
 
-    x <- vec[1]
-    y <- vec[2]
-    z <- vec[3]
-
-    rp <- sqrt(x^2 + y^2 + z^2)
+    rp <- sqrt(x ^ 2 + y ^ 2 + z ^ 2)
 
     flatgc <- asin(z / rp) / dtr
 
@@ -34,7 +34,7 @@ xyz2lla <- function(vec) {
     if (flon < 0.0)
         flon <- flon + 360.0
 
-    p <- sqrt(x^2 + y^2)
+    p <- sqrt(x ^ 2 + y ^ 2)
 
     # on pole special case
     if (p < 1.0e-10) {
@@ -59,7 +59,7 @@ xyz2lla <- function(vec) {
     rn    <- rrnrm[2]
 
     #for (i in 1:5) {  # why only five times?
-    while(TRUE) {
+    while (TRUE) {
         slat  <- sin(dtr * flat)
         tangd <- (z + rn * esq * slat) / p
         flatn <- atan(tangd) / dtr

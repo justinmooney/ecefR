@@ -4,10 +4,14 @@
 \alias{xyz2lla}
 \title{ECEF Coordinates to Lat, Long, Altitude}
 \usage{
-xyz2lla(vec)
+xyz2lla(x, y, z)
 }
 \arguments{
-\item{vec}{xyz ECEF location}
+\item{x}{x-coord}
+
+\item{y}{y-coord}
+
+\item{z}{z-coord}
 }
 \value{
 A 3-vec containing lat(deg), long(deg), altitude(km)
@@ -16,7 +20,9 @@ A 3-vec containing lat(deg), long(deg), altitude(km)
 ECEF Coordinates to Lat, Long, Altitude
 }
 \details{
-This converter uses N latitude and E longitude. Heights are in meters, and are ellipsoidal heights. There is no geoid model included.
+This converter uses N latitude and E longitude.
+Heights are in meters, and are ellipsoidal heights.
+There is no geoid model included.
 The WGS 84 ellipsoid is used.
 }
 

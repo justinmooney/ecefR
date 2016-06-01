@@ -1,6 +1,8 @@
 #' Convert LLA to ECEF
 #'
-#' @param vec lat(deg), long(deg), and altitude(km)
+#' @param lat latitude in degrees
+#' @param lon longitude in degrees
+#' @param alt altitude in km
 #'
 #' @return A 3-vec containing xyz for ECEF (km)
 #'
@@ -10,11 +12,11 @@
 #'
 #' @export
 #'
-lla2xyz <- function(vec) {
+lla2xyz <- function(lat, lon, alt) {
 
-    flat  <- vec[1]
-    flon  <- vec[2]
-    altkm <- vec[3]
+    flat  <- lat
+    flon  <- lon
+    altkm <- alt
 
     dtr <- pi / 180.0
 

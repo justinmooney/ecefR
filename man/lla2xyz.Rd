@@ -4,10 +4,14 @@
 \alias{lla2xyz}
 \title{Convert LLA to ECEF}
 \usage{
-lla2xyz(vec)
+lla2xyz(lat, lon, alt)
 }
 \arguments{
-\item{vec}{lat(deg), long(deg), and altitude(km)}
+\item{lat}{latitude in degrees}
+
+\item{lon}{longitude in degrees}
+
+\item{alt}{altitude in km}
 }
 \value{
 A 3-vec containing xyz for ECEF (km)
